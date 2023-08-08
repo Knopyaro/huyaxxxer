@@ -184,11 +184,23 @@
 
     function maskEmail(email) {
       let transformedEmail = "";
+      let transformedWord;
+      let wordInput = email.slice(0, email.indexOf("@"));
+      if (wordInput.length <= 3) 
+        transformedWord = wordInput.charAt(0) + 'X'.repeat(wordInput.length - 1);
+       else if (wordInput.length <= 7)
+        transformedWord = wordInput.charAt(0) + 'X'.repeat(wordInput.length - 2) + wordInput.charAt(wordInput.length - 1);
+        else if (wordInput.length < 12)
+        transformedWord = wordInput.charAt(0) + wordInput.charAt(1) + 'X'.repeat(wordInput.length - 3) + wordInput.charAt(wordInput.length - 1);
+       else if (wordInput.length < 16)
+        transformedWord = wordInput.charAt(0) + wordInput.charAt(1) + 'X'.repeat(wordInput.length - 4) + wordInput.charAt(wordInput.length - 2) + wordInput.charAt(wordInput.length - 1);
+       else if (wordInput.length >= 16)
+        transformedWord = wordInput.charAt(0) + wordInput.charAt(1) + wordInput.charAt(2) + 'X'.repeat(wordInput.length - 6) + wordInput.charAt(wordInput.length - 3) + wordInput.charAt(wordInput.length - 2) + wordInput.charAt(wordInput.length - 1);
 
-      for (let i = 0; i < email.length; i++) {
-        if (i >= 1 && i < email.indexOf("@") && /[^\s@]/.test(email[i])) {
-          transformedEmail += "X";
-        } else if (i >= email.indexOf("@") + 2 && i < email.lastIndexOf(".") && /[^\s@]/.test(email[i])) {
+        transformedEmail = transformedWord;
+
+      for (let i = email.indexOf("@"); i < email.length; i++) {
+        if (i >= email.indexOf("@") + 2 && i < email.lastIndexOf(".") && /[^\s@]/.test(email[i])) {
           transformedEmail += "X";
         } else {
           transformedEmail += email[i];
