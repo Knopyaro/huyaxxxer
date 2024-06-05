@@ -139,7 +139,7 @@
       if (word.length > 0) {
         word = word.substring(0, 11);
 
-        const maskedNumber = '+7(' + word.substring(1, 2) + 'X'.repeat(2) + ')' + 'X'.repeat(3) + '-' + 'X'.repeat(2) + '-' + word.substring(9, 11);
+        const maskedNumber = '+7 ' + word.substring(1, 2) + 'X'.repeat(2) + ' ' + 'X'.repeat(3) + ' ' + 'X'.repeat(2) + ' ' + word.substring(9, 11);
 
         transformedWordElement2.textContent = maskedNumber;
 
